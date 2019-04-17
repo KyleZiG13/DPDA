@@ -4,7 +4,7 @@ config = dict.fromkeys(['Q', 'Sigma', 'Gamma', 'Delta', 'S', 'I', 'F'], None)
 
 def check_delta(current_state, current_character, current_stack):
     '''
-
+        
     '''
     print('current state is ' + current_state + ', current character is ' + current_character + ', and the current stack is ' + current_stack)
     for x in config['Delta']:
