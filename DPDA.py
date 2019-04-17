@@ -1,10 +1,23 @@
+'''
+    Kyle Zeigler
+    April 17, 2019
+
+    The purpose of this program is to create a simulation of a deterministic
+    pushdown automata/accepter. This program was created in accordance to the
+    guidlines provided in the CSC 450 class at the University of Mount Union
+    in the 2019 Spring Semester.
+'''
+
 import sys
 
 config = dict.fromkeys(['Q', 'Sigma', 'Gamma', 'Delta', 'S', 'I', 'F'], None)
 
 def check_delta(current_state, current_character, current_stack):
     '''
-        
+        This method checks the .conf files current state in accordance with
+        the delta file. It will use the current state, current character, and
+        current stack position to determine in there is a transition for the
+        dpda_sim method to make.
     '''
     print('current state is ' + current_state + ', current character is ' + current_character + ', and the current stack is ' + current_stack)
     for x in config['Delta']:
@@ -27,7 +40,9 @@ def check_delta(current_state, current_character, current_stack):
 
 def dpda_sim():
     '''
-
+        This method is the emulation part of the project. It simulates a DPDA
+        and will determine whether the files provided deam an accepted or
+        rejected input string.
     '''
     my_input = input()
     current_state = config['S']
@@ -60,7 +75,9 @@ def dpda_sim():
 
 def config_getter(config_location):
     '''
-
+        This method loads in the .conf files for the dpda_sim method to use.
+        It loads in the specified .conf files to be used and then returns the
+        result.
     '''
     global config
 
@@ -87,7 +104,8 @@ def config_getter(config_location):
 
 def main(argv):
     '''
-
+        The main method is used to control the output of the dpda_sim. It begins
+        the DPDA and prints it out in a readable format. 
     '''
     if len(sys.argv) < 2:
         usage_string = 'usage: python ' + argv[0] + '/location/of/configuration/files'
