@@ -2,17 +2,22 @@ import sys
 
 config = dict.fromkeys(['Q', 'Sigma', 'Gamma', 'Delta', 'S', 'I', 'F'], None)
 
-def transition(currentState):
-    cs = currentState[2]
-    cc = currentState[0]
-    ts = currentState[1][len(stackContents) - 1]
+def check_delta(current_state, current_character, current_stack):
+    for x in config['Delta']:
+        x = x.split(' ')
+        if current_state == x[0] and current_character == x[1] and current_stack[0] == x[2]:
+            print('FOUND TRANSITION')
+        
 
 def dpda_sim():
     my_input = input()
+    current_state = config['S']
+    current_stack = config['I']
 
     for x in range(0, len(my_input) - 1):
         if my_input[x] in config['Sigma']: #current character in alaphabet???
             print('Legal Character')
+            check_delta(current_state, my_input[x], current_stack)
         else:
             print('Illegal Character')
 
@@ -34,7 +39,7 @@ def config_getter(config_location):
     with open(f'{config_location}F.conf') as f:
         config['F'] = f.readline(),split(',')
 
-    config['S'] = 0
+    config['S'] = '0'
 
     config['I'] = config['Gamma'] [0]
 
